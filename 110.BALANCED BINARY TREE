@@ -1,0 +1,29 @@
+class Solution {
+public:
+ int getHeight(TreeNode* root) {
+        if(root == NULL ) {
+            return 0;
+        }
+        int left = getHeight(root->left);
+        int right = getHeight(root->right);
+        int maxHeight = max(left, right);
+        int totalHeight = maxHeight + 1;
+        return totalHeight;
+    }
+    bool isBalanced(TreeNode* root) {
+        if(root==NULL){
+            return true;
+        }
+         if (!isBalanced(root->left) || !isBalanced(root->right)) {
+            return false;
+        }
+        int left=getHeight(root->left);
+        int right=getHeight(root->right);
+        if(abs(left - right) > 1){
+            return false;
+        }
+        return true;
+        
+        
+    }
+};
